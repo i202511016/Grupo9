@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DSWI_T1_0009.Models;
 using Microsoft.EntityFrameworkCore;
@@ -46,3 +46,4 @@ public partial class EmpresaDbContext : DbContext
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
+

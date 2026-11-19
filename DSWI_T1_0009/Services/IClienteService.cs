@@ -1,12 +1,6 @@
-﻿
-using DSWI_T1_0009.Models;
-
 namespace DSWI_T1_0009.Services
 {
-    public interface IClienteService
+    public class IClienteService
     {
-        Task<List<Cliente>> GetAllAsync();
-
-        Task<Cliente?> GetByIdAsync(int id);
     }
 }
