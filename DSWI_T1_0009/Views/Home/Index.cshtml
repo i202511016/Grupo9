@@ -1,8 +1,121 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    ViewData["Title"] = "Panel principal";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-4">
+
+    <div class="p-5 mb-4 rounded-4 text-white shadow"
+         style="background: linear-gradient(120deg, #12345a, #2563a6);">
+
+        <span class="badge bg-light text-primary mb-3">
+            DSWI - CIBERTEC
+        </span>
+
+        <h1 class="display-5 fw-bold">Panel de gestión</h1>
+
+        <p class="fs-5 mb-0">
+            Bienvenido al sistema de ejercicios y mantenimiento.
+            Selecciona una sección para comenzar.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h3 class="fw-bold text-dark">Módulos del sistema</h3>
+        <p class="text-secondary">
+            Accede a las funcionalidades disponibles.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <div class="rounded-3 bg-primary bg-opacity-10
+                                text-primary d-inline-flex p-3 mb-3">
+                        <span class="fs-3">☎</span>
+                    </div>
+                    <h5 class="fw-bold">Llamadas</h5>
+                    <p class="text-secondary">
+                        Calcula el costo de llamadas según los minutos utilizados.
+                    </p>
+                    <a asp-controller="Llamadas" asp-action="Index"
+                       class="btn btn-primary w-100">
+                        Abrir módulo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <div class="rounded-3 bg-success bg-opacity-10
+                                text-success d-inline-flex p-3 mb-3">
+                        <span class="fs-3">🏋</span>
+                    </div>
+                    <h5 class="fw-bold">Gimnasio</h5>
+                    <p class="text-secondary">
+                        Calcula membresías según edad y duración contratada.
+                    </p>
+                    <a asp-controller="Gimnasio" asp-action="Index"
+                       class="btn btn-success w-100">
+                        Abrir módulo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <div class="rounded-3 bg-info bg-opacity-10
+                                text-info d-inline-flex p-3 mb-3">
+                        <span class="fs-3">👥</span>
+                    </div>
+                    <h5 class="fw-bold">Clientes</h5>
+                    <p class="text-secondary">
+                        Consulta, registra y edita la información de clientes.
+                    </p>
+                    <a asp-controller="Clientes" asp-action="Index"
+                       class="btn btn-info text-white w-100">
+                        Abrir módulo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <div class="rounded-3 bg-warning bg-opacity-10
+                                text-warning d-inline-flex p-3 mb-3">
+                        <span class="fs-3">📦</span>
+                    </div>
+                    <h5 class="fw-bold">Pedidos</h5>
+                    <p class="text-secondary">
+                        Administra los pedidos y sus respectivos clientes.
+                    </p>
+                    <a asp-controller="Pedidos" asp-action="Index"
+                       class="btn btn-warning w-100">
+                        Abrir módulo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 mt-4">
+        <div class="card-body p-4">
+            <h5 class="fw-bold">Acerca del sistema</h5>
+            <p class="text-secondary mb-0">
+                Aplicación web desarrollada en ASP.NET Core MVC con C#,
+                Entity Framework Core, SQL Server y arquitectura
+                Repository y Service.
+            </p>
+        </div>
+    </div>
+
 </div>

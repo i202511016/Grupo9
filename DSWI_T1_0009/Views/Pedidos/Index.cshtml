@@ -1,2 +1,138 @@
 ﻿
 @model IEnumerable<DSWI_T1_0009.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Listado de Pedidos";
+}
+
+<div class="container py-4">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">Gestión de pedidos</h2>
+            <p class="text-secondary mb-0">
+                Consulta y administra los pedidos registrados.
+            </p>
+        </div>
+
+        <a asp-action="Crear" class="btn btn-primary px-4">
+            + Registrar pedido
+        </a>
+    </div>
+
+    @if (TempData["Mensaje"] is string mensaje)
+    {
+        <div class="alert alert-success alert-dismissible fade show rounded-3"
+             role="alert">
+            @mensaje
+            <button type="button" class="btn-close"
+                    data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+
+        <div class="card-header bg-white border-0 p-4">
+            <h5 class="fw-bold mb-0">Listado de pedidos</h5>
+        </div>
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead style="background-color: #12345a; color: white;">
+                        <tr>
+                            <th class="px-3 py-3">ID</th>
+                            <th class="py-3">Fecha</th>
+                            <th class="py-3">Monto</th>
+                            <th class="py-3">Estado</th>
+                            <th class="py-3">ID Cliente</th>
+                            <th class="py-3">Cliente</th>
+                            <th class="py-3 text-center">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var pedido in Model)
+                            {
+                                <tr>
+                                    <td class="px-3 fw-semibold">
+                                        @pedido.PedidoId
+                                    </td>
+
+                                    <td>
+                                        @pedido.FechaPedido.ToString("dd/MM/yyyy")
+                                    </td>
+
+                                    <td class="fw-semibold">
+                                        $ @pedido.Monto.ToString("0.00")
+                                    </td>
+
+                                    <td>
+                                        @if (pedido.Estado == "Completado")
+                                        {
+                                            <span class="badge bg-success">
+                                                @pedido.Estado
+                                            </span>
+                                        }
+                                        else if (pedido.Estado == "Pendiente")
+                                        {
+                                            <span class="badge bg-warning text-dark">
+                                                @pedido.Estado
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">
+                                                @pedido.Estado
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        @pedido.ClienteId
+                                    </td>
+
+                                    <td>
+                                        @(pedido.Cliente?.Nombre ?? "Sin cliente")
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a asp-action="Editar"
+                                           asp-route-id="@pedido.PedidoId"
+                                           class="btn btn-sm btn-outline-primary px-3">
+                                            Editar
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7"
+                                    class="text-center py-5 text-secondary">
+                                    No hay pedidos registrados.
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-controller="Clientes"
+           asp-action="Index"
+           class="btn btn-outline-primary">
+            Ver clientes
+        </a>
+    </div>
+
+</div>

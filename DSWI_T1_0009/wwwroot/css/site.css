@@ -1,31 +1,163 @@
+
+/* CONFIGURACIÓN GENERAL */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    margin-bottom: 60px;
+    background-color: #f4f7fb;
+    color: #263445;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* ENFOQUE DE BOTONES Y CAMPOS */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.15rem white, 0 0 0 0.25rem #258cfb;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* BOTONES */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #1d4f91;
+    border-color: #1d4f91;
+}
+
+    .btn-primary:hover {
+        background-color: #12345a;
+        border-color: #12345a;
+    }
+
+/* CAMPOS DE FORMULARIO */
+.form-control,
+.form-select {
+    border-radius: 9px;
+    border-color: #dce3ed;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #258cfb;
+    }
+
+/* TARJETAS */
+.card {
+    border-radius: 16px;
+}
+
+/* TABLAS */
+.table {
+    vertical-align: middle;
+}
+
+    .table th {
+        font-weight: 600;
+    }
+
+/* ALERTAS */
+.alert {
+    border-radius: 10px;
+}
+
+/* ENLACES */
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+/* VALIDACIONES */
+.field-validation-error,
+.validation-summary-errors {
+    color: #dc3545;
+    font-size: 0.875rem;
+}
+
+/* CONTENIDO ADAPTABLE */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* =================================
+   MENÚ PRINCIPAL
+================================= */
+
+.navbar {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    background: linear-gradient(110deg, #102b4e, #1d4f91);
+}
+
+.navbar-brand {
+    letter-spacing: 0.3px;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+/* BOTÓN DEL MENÚ EN CELULARES */
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+}
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.15rem rgba(255, 255, 255, 0.5);
+    }
+
+/* MENÚ RESPONSIVE */
+@media (max-width: 991px) {
+    .navbar-nav {
+        padding-top: 12px;
+        align-items: stretch !important;
+    }
+
+    .navbar .nav-link {
+        padding: 10px 14px;
+    }
+}
+
+/* PIE DE PÁGINA */
+footer {
+    background-color: #ffffff;
+    font-size: 0.9rem;
 }

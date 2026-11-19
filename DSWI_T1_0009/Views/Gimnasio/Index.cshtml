@@ -10,60 +10,151 @@
         : 0;
 }
 
-<div class="container mt-4 col-md-6">
-    <div class="card shadow-sm">
-        <div class="card-header bg-success text-white">
-            <h5 class="mb-0">Cálculo de Membresía de Gimnasio</h5>
-        </div>
+<div class="container py-4">
 
-        <div class="card-body">
-            <form asp-action="Index" method="post">
-                <div class="mb-3">
-                    <label class="form-label">Edad del cliente:</label>
-                    <input asp-for="Edad" type="number" min="1" max="120"
-                           class="form-control" required />
-                </div>
+    <div class="mb-4">
+        <h2 class="fw-bold text-dark">Membresías de gimnasio</h2>
+        <p class="text-secondary">
+            Calcula el costo de la membresía según la edad y los meses contratados.
+        </p>
+    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Meses contratados:</label>
-                    <input asp-for="Meses" type="number" min="1"
-                           class="form-control" required />
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
 
-                <button type="submit" class="btn btn-success">
-                    Calcular
-                </button>
-            </form>
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
 
-            @if (Model.TotalPagar.HasValue)
-            {
-                <div class="alert alert-info mt-3 mb-0">
-                    <h6 class="mb-3">Resultado del cálculo</h6>
-
-                    <p class="mb-1">
-                        <strong>Tarifa base mensual:</strong>
-                        $ @Model.TarifaBase.Value.ToString("N2")
-                    </p>
-
-                    <p class="mb-1">
-                        <strong>Subtotal (@Model.Meses meses):</strong>
-                        $ @((Model.TarifaBase.Value * Model.Meses).ToString("N2"))
-                    </p>
-
-                    <p class="mb-1">
-                        <strong>Descuento aplicado:</strong>
-                        @porcentajeDescuento%
-                        ($ @Model.Descuento.Value.ToString("N2"))
-                    </p>
-
-                    <hr />
-
-                    <p class="mb-0">
-                        <strong>Total a pagar:</strong>
-                        $ @Model.TotalPagar.Value.ToString("N2")
+                <div class="card-header text-white p-4"
+                     style="background: linear-gradient(120deg, #12345a, #2563a6);">
+                    <h4 class="fw-bold mb-1">🏋 Cálculo de membresía</h4>
+                    <p class="mb-0 opacity-75">
+                        Completa los datos para calcular el precio.
                     </p>
                 </div>
-            }
+
+                <div class="card-body p-4">
+
+                    <form asp-action="Index" method="post">
+
+                        <div class="mb-4">
+                            <label asp-for="Edad" class="form-label fw-semibold">
+                                Edad del cliente
+                            </label>
+
+                            <input asp-for="Edad"
+                                   type="number"
+                                   min="1"
+                                   max="120"
+                                   class="form-control form-control-lg"
+                                   placeholder="Ejemplo: 25"
+                                   required />
+
+                            <span asp-validation-for="Edad"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Meses" class="form-label fw-semibold">
+                                Meses contratados
+                            </label>
+
+                            <input asp-for="Meses"
+                                   type="number"
+                                   min="1"
+                                   class="form-control form-control-lg"
+                                   placeholder="Ejemplo: 6"
+                                   required />
+
+                            <span asp-validation-for="Meses"
+                                  class="text-danger"></span>
+
+                            <div class="form-text">
+                                Los descuentos se aplican según la duración contratada.
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            Calcular membresía
+                        </button>
+
+                    </form>
+
+                    @if (Model.TotalPagar.HasValue)
+                    {
+                        <div class="mt-4 p-4 rounded-3 border border-success bg-success bg-opacity-10">
+
+                            <h5 class="fw-bold text-success mb-3">
+                                Resultado del cálculo
+                            </h5>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Edad:</span>
+                                <strong>@Model.Edad años</strong>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Duración:</span>
+                                <strong>@Model.Meses meses</strong>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Tarifa base mensual:</span>
+                                <strong>$ @Model.TarifaBase.Value.ToString("N2")</strong>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">Subtotal:</span>
+                                <strong>
+                                    $ @((Model.TarifaBase.Value * Model.Meses).ToString("N2"))
+                                </strong>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary">
+                                    Descuento (@porcentajeDescuento%):
+                                </span>
+                                <strong class="text-success">
+                                    - $ @Model.Descuento.Value.ToString("N2")
+                                </strong>
+                            </div>
+
+                            <hr />
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Total a pagar:</span>
+                                <h3 class="fw-bold text-success mb-0">
+                                    $ @Model.TotalPagar.Value.ToString("N2")
+                                </h3>
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 mt-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">Tarifas y descuentos</h5>
+
+                    <p class="fw-semibold mb-2">Tarifa mensual por edad</p>
+                    <ul class="text-secondary">
+                        <li>Menores de 18 años: $ 20.00.</li>
+                        <li>De 18 a 59 años: $ 35.00.</li>
+                        <li>Desde los 60 años: $ 25.00.</li>
+                    </ul>
+
+                    <p class="fw-semibold mb-2">Descuentos por duración</p>
+                    <ul class="text-secondary mb-0">
+                        <li>3 meses: 5%.</li>
+                        <li>6 meses: 10%.</li>
+                        <li>12 meses: 20%.</li>
+                        <li>Otros periodos: sin descuento.</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
+
 </div>

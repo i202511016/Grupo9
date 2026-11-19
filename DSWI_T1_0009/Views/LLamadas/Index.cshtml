@@ -1,29 +1,98 @@
-﻿@model DSWI_T1_0009.Models.LlamadaModel
+﻿
+@model DSWI_T1_0009.Models.LlamadaModel
 
 @{
     ViewData["Title"] = "Cálculo de Llamada Telefónica";
 }
 
-<div class="container mt-4 col-md-6">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Costo de Llamada Telefónica</h5>
-        </div>
-        <div class="card-body">
-            <form asp-action="Index" method="post">
-                <div class="mb-3">
-                    <label class="form-label">Minutos de la llamada:</label>
-                    <input asp-for="Minutos" type="number" min="1" class="form-control" required />
-                </div>
-                <button type="submit" class="btn btn-primary">Calcular</button>
-            </form>
+<div class="container py-4">
 
-            @if (Model.TotalPagar.HasValue)
-            {
-                <div class="alert alert-success mt-3 mb-0">
-                    <strong>Total a pagar:</strong> $ @Model.TotalPagar.Value.ToString("0.00")
+    <div class="mb-4">
+        <h2 class="fw-bold text-dark">Cálculo de llamadas</h2>
+        <p class="text-secondary">
+            Calcula el costo de una llamada telefónica según su duración.
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+
+                <div class="card-header text-white p-4"
+                     style="background: linear-gradient(120deg, #12345a, #2563a6);">
+                    <h4 class="fw-bold mb-1">☎ Costo de llamada telefónica</h4>
+                    <p class="mb-0 opacity-75">
+                        Ingresa los minutos para realizar el cálculo.
+                    </p>
                 </div>
-            }
+
+                <div class="card-body p-4">
+
+                    <form asp-action="Index" method="post">
+
+                        <div class="mb-4">
+                            <label asp-for="Minutos" class="form-label fw-semibold">
+                                Minutos de la llamada
+                            </label>
+
+                            <input asp-for="Minutos"
+                                   type="number"
+                                   min="1"
+                                   class="form-control form-control-lg"
+                                   placeholder="Ejemplo: 10"
+                                   required />
+
+                            <span asp-validation-for="Minutos"
+                                  class="text-danger"></span>
+
+                            <div class="form-text">
+                                Ingresa la cantidad de minutos de la llamada.
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            Calcular costo
+                        </button>
+
+                    </form>
+
+                    @if (Model.TotalPagar.HasValue)
+                    {
+                        <div class="mt-4 p-4 rounded-3 border border-success bg-success bg-opacity-10">
+
+                            <div class="text-success fw-semibold mb-2">
+                                Resultado del cálculo
+                            </div>
+
+                            <div class="text-secondary">
+                                Minutos ingresados: <strong>@Model.Minutos</strong>
+                            </div>
+
+                            <div class="mt-2">
+                                <span class="text-secondary">Total a pagar</span>
+                                <h2 class="fw-bold text-success mb-0">
+                                    $ @Model.TotalPagar.Value.ToString("0.00")
+                                </h2>
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 mt-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold">Información de tarifas</h5>
+                    <ul class="text-secondary mb-0">
+                        <li>Hasta 5 minutos: $ 10.00.</li>
+                        <li>Cada minuto adicional: $ 2.00.</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
+
 </div>

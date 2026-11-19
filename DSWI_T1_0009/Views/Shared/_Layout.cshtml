@@ -1,50 +1,87 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DSWI_T1_0009</title>
+
     <script type="importmap"></script>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DSWI_T1_0009.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DSWI_T1_0009</a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm mb-4"
+             style="background: linear-gradient(110deg, #102b4e, #1d4f91);">
+
+            <div class="container">
+
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2"
+                   asp-controller="Home" asp-action="Index">
+                    <span class="bg-white text-primary rounded-3 px-2 py-1">DS</span>
+                    <span>DSWI_T1_0009</span>
+                </a>
+
+                <button class="navbar-toggler border-0" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#menuPrincipal"
+                        aria-controls="menuPrincipal"
+                        aria-expanded="false"
+                        aria-label="Abrir menú">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link px-3 rounded-3"
+                               asp-controller="Home" asp-action="Index">
+                                Inicio
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Llamadas" asp-action="Index">Llamadas</a>
+                            <a class="nav-link px-3 rounded-3"
+                               asp-controller="Clientes" asp-action="Index">
+                                Clientes
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Gimnasio" asp-action="Index">Gimnasio</a>
+                            <a class="nav-link px-3 rounded-3"
+                               asp-controller="Pedidos" asp-action="Index">
+                                Pedidos
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                            <a class="nav-link px-3 rounded-3"
+                               asp-controller="Llamadas" asp-action="Index">
+                                Llamadas
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
+                            <a class="nav-link px-3 rounded-3"
+                               asp-controller="Gimnasio" asp-action="Index">
+                                Gimnasio
+                            </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-3"
+                               asp-controller="Home" asp-action="Privacy">
+                                Acerca de
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -57,18 +94,19 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - DSWI_T1_0009 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top mt-5 py-3 text-muted">
+        <div class="container text-center">
+            <small>
+                &copy; 2026 - DSWI_T1_0009 | Proyecto académico
+            </small>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
-
-
-
