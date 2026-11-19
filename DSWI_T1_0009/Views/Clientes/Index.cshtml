@@ -1,0 +1,8 @@
+@model IEnumerable<DSWI_T1_0009.Models.Cliente>
+@{ ViewData["Title"] = "Clientes"; }
+<h1>Clientes</h1>
+@if (TempData["Mensaje"] is string mensaje) { <div class="alert alert-success">@mensaje</div> }
+<p><a asp-action="Crear" class="btn btn-primary">Registrar cliente</a></p>
+<table class="table table-striped"><thead><tr><th>ID</th><th>Nombre</th><th>Correo electrónico</th><th></th></tr></thead><tbody>
+@foreach (var c in Model) { <tr><td>@c.ClienteId</td><td>@c.Nombre</td><td>@c.CorreoElectronico</td><td><a asp-action="Editar" asp-route-id="@c.ClienteId" class="btn btn-sm btn-outline-primary">Editar</a></td></tr> }
+</tbody></table>
