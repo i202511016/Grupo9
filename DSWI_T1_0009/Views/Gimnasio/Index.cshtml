@@ -1,7 +1,13 @@
-﻿@model DSWI_T1_0009.Models.MembresiaGimnasioModel
+﻿
+@model DSWI_T1_0009.Models.MembresiaGimnasioModel
 
 @{
     ViewData["Title"] = "Membresía de Gimnasio";
+
+    int porcentajeDescuento = Model.Meses == 3 ? 5
+        : Model.Meses == 6 ? 10
+        : Model.Meses == 12 ? 20
+        : 0;
 }
 
 <div class="container mt-4 col-md-6">
@@ -9,25 +15,53 @@
         <div class="card-header bg-success text-white">
             <h5 class="mb-0">Cálculo de Membresía de Gimnasio</h5>
         </div>
+
         <div class="card-body">
             <form asp-action="Index" method="post">
                 <div class="mb-3">
                     <label class="form-label">Edad del cliente:</label>
-                    <input asp-for="Edad" type="number" min="1" max="120" class="form-control" required />
+                    <input asp-for="Edad" type="number" min="1" max="120"
+                           class="form-control" required />
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label">Meses contratados:</label>
-                    <input asp-for="Meses" type="number" min="1" class="form-control" required />
+                    <input asp-for="Meses" type="number" min="1"
+                           class="form-control" required />
                 </div>
-                <button type="submit" class="btn btn-success">Calcular</button>
+
+                <button type="submit" class="btn btn-success">
+                    Calcular
+                </button>
             </form>
 
             @if (Model.TotalPagar.HasValue)
             {
                 <div class="alert alert-info mt-3 mb-0">
-                    <p class="mb-1"><strong>Tarifa base mensual:</strong> $ @Model.TarifaBase.Value.ToString("0.00")</p>
-                    <p class="mb-1"><strong>Descuento aplicado:</strong> $ @Model.Descuento.Value.ToString("0.00")</p>
-                    <p class="mb-0"><strong>Total a pagar:</strong> $ @Model.TotalPagar.Value.ToString("0.00")</p>
+                    <h6 class="mb-3">Resultado del cálculo</h6>
+
+                    <p class="mb-1">
+                        <strong>Tarifa base mensual:</strong>
+                        $ @Model.TarifaBase.Value.ToString("N2")
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Subtotal (@Model.Meses meses):</strong>
+                        $ @((Model.TarifaBase.Value * Model.Meses).ToString("N2"))
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Descuento aplicado:</strong>
+                        @porcentajeDescuento%
+                        ($ @Model.Descuento.Value.ToString("N2"))
+                    </p>
+
+                    <hr />
+
+                    <p class="mb-0">
+                        <strong>Total a pagar:</strong>
+                        $ @Model.TotalPagar.Value.ToString("N2")
+                    </p>
                 </div>
             }
         </div>

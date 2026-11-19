@@ -1,6 +1,12 @@
-﻿namespace DSWI_T1_0009.Repositories
+﻿
+using DSWI_T1_0009.Models;
+
+namespace DSWI_T1_0009.Repositories
 {
-    public class IPedidoRepository
+    public interface IPedidoRepository
     {
+        Task<List<Pedido>> GetAllAsync();
+
+        Task<Pedido?> GetByIdAsync(int id);
     }
 }

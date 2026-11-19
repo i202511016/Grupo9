@@ -1,0 +1,40 @@
+﻿
+@model IEnumerable<DSWI_T1_0009.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Listado de Clientes";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3">Listado de Clientes</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo electrónico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cliente in Model)
+                    {
+                        <tr>
+                            <td>@cliente.ClienteId</td>
+                            <td>@cliente.Nombre</td>
+                            <td>@cliente.CorreoElectronico</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <a asp-controller="Pedidos"
+       asp-action="Index"
+       class="btn btn-primary mt-3">
+        Ver pedidos
+    </a>
+</div>

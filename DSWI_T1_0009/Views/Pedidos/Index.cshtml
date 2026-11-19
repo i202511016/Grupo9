@@ -1,0 +1,45 @@
+﻿
+@model IEnumerable<DSWI_T1_0009.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Listado de Pedidos";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3">Listado de Pedidos</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID Pedido</th>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th>Estado</th>
+                        <th>ID Cliente</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        <tr>
+                            <td>@pedido.PedidoId</td>
+                            <td>@pedido.FechaPedido.ToString("dd/MM/yyyy")</td>
+                            <td>@pedido.Monto</td>
+                            <td>@pedido.Estado</td>
+                            <td>@pedido.ClienteId</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <a asp-controller="Clientes"
+       asp-action="Index"
+       class="btn btn-primary mt-3">
+        Ver clientes
+    </a>
+</div>
